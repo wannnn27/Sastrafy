@@ -51,7 +51,7 @@ Koleksi karya sastra untuk inspirasi dan apresiasi.
 | Styling | Tailwind CSS |
 | Animasi | Framer Motion |
 | Icons | Lucide React |
-| AI | Gemini API / OpenAI API |
+| AI | Gemini API |
 
 ---
 
