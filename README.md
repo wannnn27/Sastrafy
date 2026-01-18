@@ -141,33 +141,6 @@ sastrafy/
 
 ---
 
-## Deployment
-
-### Deploy ke Vercel (Recommended)
-
-1. Push ke GitHub
-2. Buka [vercel.com](https://vercel.com) dan import repository
-3. Tambahkan Environment Variable (`GEMINI_API_KEY`)
-4. Deploy
-
-### Build untuk Production
-
-```bash
-npm run build
-npm start
-```
-
----
-
-## Pengembangan Selanjutnya
-
-- [ ] Integrasi database (Supabase) untuk menyimpan karya
-- [ ] Sistem autentikasi pengguna
-- [ ] Fitur share ke sosial media
-- [ ] Export karya ke PDF
-- [ ] Komunitas dan komentar
-
----
 
 ## Lisensi
 
@@ -187,4 +160,3 @@ Untuk pertanyaan atau saran, silakan buka Issue di repository ini.
 
 ---
 
-*Dibuat dengan ❤️ untuk pelestarian dan pengembangan sastra Indonesia*
