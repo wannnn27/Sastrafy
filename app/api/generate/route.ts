@@ -192,7 +192,7 @@ async function callGeminiAPI(prompt: string): Promise<string | null> {
 
     try {
         const response = await fetch(
-            `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiKey}`,
+            `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-001:generateContent?key=${geminiKey}`,
             {
                 method: "POST",
                 headers: {
@@ -296,7 +296,7 @@ HANYA berikan judul, tanpa penjelasan, tanpa tanda kutip.`;
     if (geminiKey) {
         try {
             const response = await fetch(
-                `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiKey}`,
+                `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-001:generateContent?key=${geminiKey}`,
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
