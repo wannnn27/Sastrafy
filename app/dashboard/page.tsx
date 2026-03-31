@@ -73,7 +73,7 @@ export default function DashboardPage() {
     ];
 
     return (
-        <main className="min-h-screen bg-gradient-to-br from-batik-cream via-white to-batik-warm-beige">
+        <main className="min-h-screen bg-batik-50">
             <Navbar />
 
             <div className="pt-20 pb-12">
@@ -83,48 +83,48 @@ export default function DashboardPage() {
                         <motion.aside
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
-                            className="lg:w-64 flex-shrink-0"
+                            className="lg:w-72 flex-shrink-0"
                         >
                             {/* Profile Card */}
-                            <div className="bg-white rounded-2xl shadow-lg p-6 border border-primary-100 mb-6">
-                                <div className="flex items-center space-x-4 mb-4">
-                                    <div className="w-16 h-16 bg-gradient-to-br from-batik-terracotta to-batik-gold rounded-full flex items-center justify-center">
-                                        <User className="w-8 h-8 text-white" />
+                            <div className="bg-white border border-batik-100 p-8 mb-8">
+                                <div className="flex items-center gap-4 mb-6">
+                                    <div className="w-16 h-16 bg-batik-900 border border-batik-100 flex items-center justify-center">
+                                        <User className="w-8 h-8 text-batik-50" />
                                     </div>
                                     <div>
-                                        <h2 className="font-semibold text-primary-800">{user.name}</h2>
-                                        <p className="text-sm text-primary-500">@{user.username}</p>
+                                        <h2 className="font-serif font-bold text-batik-950">{user.name}</h2>
+                                        <p className="text-[10px] uppercase tracking-widest font-bold text-batik-400">@{user.username}</p>
                                     </div>
                                 </div>
-                                <div className="flex items-center space-x-2 text-sm text-primary-600">
-                                    <Calendar className="w-4 h-4" />
-                                    <span>Bergabung {formatRelativeTime(user.joinedDate)}</span>
+                                <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest font-bold text-batik-600 mb-6">
+                                    <Calendar className="w-3 h-3" />
+                                    <span>Sejak {formatRelativeTime(user.joinedDate)}</span>
                                 </div>
-                                <div className="mt-4 pt-4 border-t border-primary-100">
-                                    <span className="inline-block px-3 py-1 bg-batik-gold/20 text-batik-terracotta rounded-full text-xs font-medium capitalize">
+                                <div className="pt-6 border-t border-batik-50">
+                                    <span className="inline-block px-3 py-1 bg-batik-900 text-batik-50 text-[10px] uppercase tracking-widest font-bold border border-batik-900">
                                         {user.subscription} Plan
                                     </span>
                                 </div>
                             </div>
 
                             {/* Navigation */}
-                            <nav className="bg-white rounded-2xl shadow-lg border border-primary-100 overflow-hidden">
+                            <nav className="bg-white border border-batik-100 overflow-hidden">
                                 {sidebarItems.map((item) => (
                                     <button
                                         key={item.id}
                                         onClick={() => setActiveTab(item.id as DashboardTab)}
-                                        className={`w-full flex items-center space-x-3 px-4 py-3 text-left transition-colors ${activeTab === item.id
-                                                ? "bg-batik-terracotta/10 text-batik-terracotta border-l-4 border-batik-terracotta"
-                                                : "text-primary-700 hover:bg-primary-50"
+                                        className={`w-full flex items-center gap-4 px-6 py-4 text-left transition-all ${activeTab === item.id
+                                                ? "bg-batik-900 text-batik-50"
+                                                : "text-batik-600 hover:bg-batik-50"
                                             }`}
                                     >
-                                        <item.icon className="w-5 h-5" />
-                                        <span className="font-medium">{item.label}</span>
+                                        <item.icon className="w-4 h-4" />
+                                        <span className="text-[10px] uppercase tracking-widest font-bold">{item.label}</span>
                                     </button>
                                 ))}
-                                <button className="w-full flex items-center space-x-3 px-4 py-3 text-left text-red-600 hover:bg-red-50 transition-colors border-t border-primary-100">
-                                    <LogOut className="w-5 h-5" />
-                                    <span className="font-medium">Keluar</span>
+                                <button className="w-full flex items-center gap-4 px-6 py-4 text-left text-red-600 hover:bg-red-50 transition-all border-t border-batik-50">
+                                    <LogOut className="w-4 h-4" />
+                                    <span className="text-[10px] uppercase tracking-widest font-bold">Keluar</span>
                                 </button>
                             </nav>
                         </motion.aside>
@@ -137,71 +137,61 @@ export default function DashboardPage() {
                         >
                             {/* Overview Tab */}
                             {activeTab === "overview" && (
-                                <div className="space-y-6">
-                                    <h1 className="text-2xl font-serif font-bold text-primary-800">
-                                        Selamat Datang, {user.name}! 👋
-                                    </h1>
+                                <div className="space-y-12">
+                                    <div>
+                                        <h1 className="text-4xl font-serif font-bold text-batik-950 mb-2">
+                                            Rahayu, {user.name.split(" ")[0]}
+                                        </h1>
+                                        <p className="text-batik-600 font-light italic">Selamat datang kembali di ruang kreatif Anda.</p>
+                                    </div>
 
                                     {/* Stats Grid */}
-                                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                                         {[
-                                            { label: "Total Karya", value: user.stats.totalWorks, icon: PenTool, color: "from-blue-500 to-blue-600" },
-                                            { label: "Total Dilihat", value: user.stats.totalViews, icon: Eye, color: "from-green-500 to-green-600" },
-                                            { label: "Bookmark", value: user.stats.totalBookmarks, icon: Bookmark, color: "from-purple-500 to-purple-600" },
-                                            { label: "Progress", value: `${user.stats.learningProgress}%`, icon: Trophy, color: "from-batik-terracotta to-batik-gold" },
+                                            { label: "Karya", value: user.stats.totalWorks, icon: PenTool },
+                                            { label: "Bacaan", value: user.stats.totalViews, icon: Eye },
+                                            { label: "Simpanan", value: user.stats.totalBookmarks, icon: Bookmark },
+                                            { label: "Kemajuan", value: `${user.stats.learningProgress}%`, icon: Trophy },
                                         ].map((stat, i) => (
                                             <div
                                                 key={i}
-                                                className="bg-white rounded-xl shadow-md p-4 border border-primary-100"
+                                                className="bg-white border border-batik-100 p-8 text-center"
                                             >
-                                                <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${stat.color} flex items-center justify-center mb-3`}>
-                                                    <stat.icon className="w-5 h-5 text-white" />
-                                                </div>
-                                                <div className="text-2xl font-bold text-primary-800">{stat.value}</div>
-                                                <div className="text-sm text-primary-600">{stat.label}</div>
+                                                <div className="text-2xl font-serif font-bold text-batik-950 mb-1">{stat.value}</div>
+                                                <div className="text-[10px] uppercase tracking-widest font-bold text-batik-400">{stat.label}</div>
                                             </div>
                                         ))}
                                     </div>
 
                                     {/* Recent Works */}
-                                    <div className="bg-white rounded-2xl shadow-lg p-6 border border-primary-100">
-                                        <div className="flex items-center justify-between mb-4">
-                                            <h2 className="text-lg font-semibold text-primary-800">Karya Terbaru</h2>
-                                            <Link href="/create" className="flex items-center space-x-1 text-batik-terracotta hover:underline text-sm">
-                                                <Plus className="w-4 h-4" />
-                                                <span>Buat Baru</span>
+                                    <div className="bg-white border border-batik-100 p-8">
+                                        <div className="flex items-center justify-between mb-8">
+                                            <h2 className="text-[10px] uppercase tracking-widest font-bold text-batik-900">Karya Terbaru</h2>
+                                            <Link href="/create" className="text-[10px] uppercase tracking-widest font-bold text-batik-400 hover:text-batik-900 transition-colors">
+                                                + Buat Baru
                                             </Link>
                                         </div>
                                         <div className="space-y-4">
                                             {userWorks.slice(0, 3).map((work) => (
-                                                <div
+                                                <Link
                                                     key={work.id}
-                                                    className="flex items-center justify-between p-4 bg-primary-50 rounded-xl"
+                                                    href={`/gallery/${work.id}`}
+                                                    className="group flex items-center justify-between p-6 bg-batik-50/50 border border-transparent hover:border-batik-100 hover:bg-white transition-all"
                                                 >
                                                     <div className="flex-1">
-                                                        <h3 className="font-medium text-primary-800">{work.title}</h3>
-                                                        <div className="flex items-center space-x-4 text-sm text-primary-500 mt-1">
+                                                        <h3 className="font-serif font-bold text-batik-950 group-hover:text-batik-600 transition-colors">{work.title}</h3>
+                                                        <div className="flex items-center gap-4 text-[10px] uppercase tracking-widest font-bold text-batik-400 mt-2">
                                                             <span>{literatureTypeNames[work.literatureType]}</span>
-                                                            <span className="flex items-center">
-                                                                <Eye className="w-3 h-3 mr-1" />
+                                                            <span className="flex items-center gap-1">
+                                                                <Eye className="w-3 h-3" />
                                                                 {work.viewCount}
-                                                            </span>
-                                                            <span className="flex items-center">
-                                                                <Star className="w-3 h-3 mr-1" />
-                                                                {work.averageRating}
                                                             </span>
                                                         </div>
                                                     </div>
-                                                    <ChevronRight className="w-5 h-5 text-primary-400" />
-                                                </div>
+                                                    <ChevronRight className="w-4 h-4 text-batik-200 group-hover:text-batik-900 transition-colors" />
+                                                </Link>
                                             ))}
                                         </div>
-                                        <button
-                                            onClick={() => setActiveTab("works")}
-                                            className="w-full mt-4 text-center text-batik-terracotta hover:underline text-sm"
-                                        >
-                                            Lihat Semua Karya →
-                                        </button>
                                     </div>
 
                                     {/* Learning Progress */}
@@ -235,74 +225,60 @@ export default function DashboardPage() {
 
                             {/* Works Tab */}
                             {activeTab === "works" && (
-                                <div className="space-y-6">
+                                <div className="space-y-12">
                                     <div className="flex items-center justify-between">
-                                        <h1 className="text-2xl font-serif font-bold text-primary-800">Karya Saya</h1>
+                                        <h1 className="text-4xl font-serif font-bold text-batik-950">Karya Saya</h1>
                                         <Link
                                             href="/create"
-                                            className="flex items-center space-x-2 px-4 py-2 bg-batik-terracotta text-white rounded-lg hover:bg-batik-terracotta/90 transition-colors"
+                                            className="px-6 py-3 bg-batik-900 text-batik-50 font-bold text-xs uppercase tracking-widest hover:bg-batik-800 transition-all"
                                         >
-                                            <Plus className="w-4 h-4" />
-                                            <span>Buat Karya Baru</span>
+                                            + Tulis Baru
                                         </Link>
                                     </div>
 
-                                    <div className="grid gap-4">
+                                    <div className="grid gap-6">
                                         {userWorks.map((work) => (
                                             <div
                                                 key={work.id}
-                                                className="bg-white rounded-xl shadow-md p-6 border border-primary-100"
+                                                className="bg-white border border-batik-100 p-8 hover:border-batik-300 transition-all"
                                             >
                                                 <div className="flex items-start justify-between">
                                                     <div className="flex-1">
-                                                        <div className="flex items-center space-x-2 mb-2">
-                                                            <span className="px-2 py-1 bg-primary-100 text-primary-700 rounded text-xs font-medium">
+                                                        <div className="flex items-center gap-4 mb-4">
+                                                            <span className="text-[10px] uppercase tracking-widest font-bold text-batik-400">
                                                                 {literatureTypeNames[work.literatureType]}
                                                             </span>
                                                             {work.isPublic ? (
-                                                                <span className="px-2 py-1 bg-green-100 text-green-700 rounded text-xs">
-                                                                    Publik
-                                                                </span>
+                                                                <span className="text-[10px] uppercase tracking-widest font-bold text-green-600">Publik</span>
                                                             ) : (
-                                                                <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">
-                                                                    Privat
-                                                                </span>
+                                                                <span className="text-[10px] uppercase tracking-widest font-bold text-batik-300">Privat</span>
                                                             )}
                                                         </div>
-                                                        <h3 className="text-lg font-semibold text-primary-800 mb-2">
-                                                            {work.title}
-                                                        </h3>
-                                                        <p className="text-sm text-primary-600 line-clamp-2">
-                                                            {truncateText(work.content, 150)}
+                                                        <h3 className="text-2xl font-serif font-bold text-batik-950 mb-4">{work.title}</h3>
+                                                        <p className="text-batik-600 font-light text-sm line-clamp-2 italic mb-6">
+                                                            "{truncateText(work.content, 150)}"
                                                         </p>
-                                                        <div className="flex items-center space-x-4 mt-3 text-sm text-primary-500">
-                                                            <span className="flex items-center">
-                                                                <Eye className="w-4 h-4 mr-1" />
+                                                        <div className="flex items-center gap-6 text-[10px] uppercase tracking-widest font-bold text-batik-400">
+                                                            <span className="flex items-center gap-1">
+                                                                <Eye className="w-3 h-3" />
                                                                 {work.viewCount} views
                                                             </span>
-                                                            <span className="flex items-center">
-                                                                <Bookmark className="w-4 h-4 mr-1" />
-                                                                {work.bookmarkCount}
-                                                            </span>
-                                                            <span className="flex items-center">
-                                                                <Star className="w-4 h-4 mr-1 text-batik-gold fill-batik-gold" />
+                                                            <span className="flex items-center gap-1">
+                                                                <Star className="w-3 h-3 text-batik-600" />
                                                                 {work.averageRating}
                                                             </span>
-                                                            <span className="flex items-center">
-                                                                <Clock className="w-4 h-4 mr-1" />
+                                                            <span className="flex items-center gap-1">
+                                                                <Clock className="w-3 h-3" />
                                                                 {formatRelativeTime(work.createdAt)}
                                                             </span>
                                                         </div>
                                                     </div>
-                                                    <div className="flex items-center space-x-2 ml-4">
-                                                        <button className="p-2 hover:bg-primary-50 rounded-lg transition-colors">
-                                                            <Edit className="w-4 h-4 text-primary-600" />
+                                                    <div className="flex items-center gap-2 ml-8">
+                                                        <button className="p-2 text-batik-400 hover:text-batik-900 transition-colors">
+                                                            <Edit className="w-4 h-4" />
                                                         </button>
-                                                        <button className="p-2 hover:bg-red-50 rounded-lg transition-colors">
-                                                            <Trash2 className="w-4 h-4 text-red-500" />
-                                                        </button>
-                                                        <button className="p-2 hover:bg-primary-50 rounded-lg transition-colors">
-                                                            <MoreHorizontal className="w-4 h-4 text-primary-600" />
+                                                        <button className="p-2 text-batik-200 hover:text-red-600 transition-colors">
+                                                            <Trash2 className="w-4 h-4" />
                                                         </button>
                                                     </div>
                                                 </div>
@@ -349,101 +325,46 @@ export default function DashboardPage() {
 
                             {/* Progress Tab */}
                             {activeTab === "progress" && (
-                                <div className="space-y-6">
-                                    <h1 className="text-2xl font-serif font-bold text-primary-800">Progress Belajar</h1>
+                                <div className="space-y-12">
+                                    <h1 className="text-4xl font-serif font-bold text-batik-950">Pencapaian</h1>
 
                                     {/* Overall Progress */}
-                                    <div className="bg-white rounded-2xl shadow-lg p-6 border border-primary-100">
-                                        <h2 className="text-lg font-semibold text-primary-800 mb-4">Progress Keseluruhan</h2>
-                                        <div className="flex items-center space-x-4">
-                                            <div className="relative w-24 h-24">
-                                                <svg className="w-full h-full" viewBox="0 0 100 100">
-                                                    <circle
-                                                        cx="50"
-                                                        cy="50"
-                                                        r="40"
-                                                        fill="none"
-                                                        stroke="#E8D5C4"
-                                                        strokeWidth="10"
-                                                    />
-                                                    <circle
-                                                        cx="50"
-                                                        cy="50"
-                                                        r="40"
-                                                        fill="none"
-                                                        stroke="#C15C37"
-                                                        strokeWidth="10"
-                                                        strokeLinecap="round"
-                                                        strokeDasharray={`${user.stats.learningProgress * 2.51} 251`}
-                                                        transform="rotate(-90 50 50)"
-                                                    />
-                                                </svg>
-                                                <div className="absolute inset-0 flex items-center justify-center">
-                                                    <span className="text-2xl font-bold text-primary-800">
-                                                        {user.stats.learningProgress}%
-                                                    </span>
-                                                </div>
+                                    <div className="bg-white border border-batik-100 p-10 flex flex-col md:flex-row items-center gap-12">
+                                        <div className="relative w-32 h-32 flex-shrink-0">
+                                            <svg className="w-full h-full" viewBox="0 0 100 100">
+                                                <circle cx="50" cy="50" r="45" fill="none" stroke="#f1f1f1" strokeWidth="4" />
+                                                <circle
+                                                    cx="50" cy="50" r="45" fill="none" stroke="#2D241E" strokeWidth="4"
+                                                    strokeDasharray={`${user.stats.learningProgress * 2.82} 282`}
+                                                    transform="rotate(-90 50 50)"
+                                                />
+                                            </svg>
+                                            <div className="absolute inset-0 flex items-center justify-center">
+                                                <span className="text-2xl font-serif font-bold text-batik-950">{user.stats.learningProgress}%</span>
                                             </div>
-                                            <div>
-                                                <p className="text-lg font-medium text-primary-800">
-                                                    {user.stats.modulesCompleted} dari 6 modul selesai
-                                                </p>
-                                                <p className="text-sm text-primary-600">
-                                                    Lanjutkan belajar untuk membuka lebih banyak fitur
-                                                </p>
-                                            </div>
+                                        </div>
+                                        <div>
+                                            <h2 className="text-xl font-serif font-bold text-batik-950 mb-3">Guru {user.stats.modulesCompleted >= 4 ? "Linuwih" : "Muda"}</h2>
+                                            <p className="text-batik-600 font-light text-sm italic mb-4">"Ilmu itu seperti air, ia mengalir ke tempat yang lebih rendah untuk memberi kehidupan."</p>
+                                            <p className="text-[10px] uppercase tracking-widest font-bold text-batik-400">{user.stats.modulesCompleted} dari 6 Modul Terselesaikan</p>
                                         </div>
                                     </div>
 
-                                    {/* Module Progress */}
-                                    <div className="bg-white rounded-2xl shadow-lg p-6 border border-primary-100">
-                                        <h2 className="text-lg font-semibold text-primary-800 mb-4">Modul Pembelajaran</h2>
-                                        <div className="space-y-4">
-                                            {learningProgress.map((item, i) => (
-                                                <div
-                                                    key={i}
-                                                    className={`p-4 rounded-xl border ${item.completed
-                                                            ? "bg-green-50 border-green-200"
-                                                            : item.progress > 0
-                                                                ? "bg-batik-cream/30 border-batik-terracotta/20"
-                                                                : "bg-gray-50 border-gray-200"
-                                                        }`}
-                                                >
-                                                    <div className="flex items-center justify-between mb-2">
-                                                        <div className="flex items-center space-x-3">
-                                                            {item.completed ? (
-                                                                <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                                                                    <Trophy className="w-4 h-4 text-white" />
-                                                                </div>
-                                                            ) : (
-                                                                <div className="w-8 h-8 bg-primary-200 rounded-full flex items-center justify-center">
-                                                                    <BookOpen className="w-4 h-4 text-primary-600" />
-                                                                </div>
-                                                            )}
-                                                            <span className="font-medium text-primary-800">{item.module}</span>
-                                                        </div>
-                                                        <span className={`text-sm font-medium ${item.completed ? "text-green-600" : "text-primary-600"}`}>
-                                                            {item.progress}%
-                                                        </span>
+                                    {/* Module list */}
+                                    <div className="grid gap-4">
+                                        {learningProgress.map((item, i) => (
+                                            <div key={i} className="bg-white border border-batik-100 p-8 flex items-center justify-between">
+                                                <div>
+                                                    <h3 className="font-serif font-bold text-batik-950 text-lg mb-1">{item.module}</h3>
+                                                    <div className="text-[10px] uppercase tracking-widest font-bold text-batik-400">
+                                                        {item.completed ? "Selesai" : `${item.progress}% Selesai`}
                                                     </div>
-                                                    <div className="h-2 bg-primary-100 rounded-full overflow-hidden">
-                                                        <div
-                                                            className={`h-full rounded-full transition-all ${item.completed ? "bg-green-500" : "bg-batik-terracotta"
-                                                                }`}
-                                                            style={{ width: `${item.progress}%` }}
-                                                        />
-                                                    </div>
-                                                    {!item.completed && item.progress > 0 && (
-                                                        <Link
-                                                            href="/learn"
-                                                            className="mt-3 inline-block text-sm text-batik-terracotta hover:underline"
-                                                        >
-                                                            Lanjutkan Belajar →
-                                                        </Link>
-                                                    )}
                                                 </div>
-                                            ))}
-                                        </div>
+                                                <div className={`w-8 h-8 ${item.completed ? "text-batik-900" : "text-batik-100"}`}>
+                                                    <Trophy className="w-6 h-6" />
+                                                </div>
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
                             )}

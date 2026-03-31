@@ -5,8 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import {
-    Sparkles,
-    Search,
     FileText,
     TrendingUp,
     Award,
@@ -18,6 +16,7 @@ import {
     Copy,
     Check,
     RotateCcw,
+    Search,
 } from "lucide-react";
 
 interface FigurativeLanguage {
@@ -167,25 +166,22 @@ Feedback: ${result.detailedFeedback}
     };
 
     return (
-        <main className="min-h-screen bg-gradient-to-br from-violet-50 via-white to-indigo-50">
+        <main className="min-h-screen bg-batik-50">
             <Navbar />
 
             {/* Hero Section */}
-            <section className="pt-24 pb-8">
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <section className="pt-32 pb-12">
+                <div className="max-w-6xl mx-auto px-6 lg:px-8">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         className="text-center"
                     >
-                        <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-4">
-                            Analisis Karya{" "}
-                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-violet-600 via-purple-500 to-indigo-500">
-                                dengan AI
-                            </span>
+                        <h1 className="text-4xl md:text-6xl font-serif font-bold text-batik-950 mb-6">
+                            Layar <span className="text-batik-600">Bedah</span>
                         </h1>
-                        <p className="text-gray-600 max-w-xl mx-auto">
-                            Dapatkan feedback mendalam tentang karya sastra Anda dari kecerdasan buatan
+                        <p className="text-lg text-batik-700 max-w-2xl mx-auto font-light">
+                            Bedah setiap baris dan bait untuk menemukan keindahan yang tersembunyi.
                         </p>
                     </motion.div>
                 </div>
@@ -200,277 +196,146 @@ Feedback: ${result.detailedFeedback}
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                         >
-                            <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-                                <div className="p-4 border-b border-gray-100 bg-gradient-to-r from-violet-50 to-indigo-50 flex items-center justify-between">
-                                    <div className="flex items-center gap-2">
-                                        <FileText className="w-5 h-5 text-violet-600" />
-                                        <h2 className="font-semibold text-gray-900">Karya Anda</h2>
-                                    </div>
+                            <div className="bg-white border border-batik-100 overflow-hidden flex flex-col h-full min-h-[600px]">
+                                <div className="p-8 border-b border-batik-50 flex items-center justify-between">
+                                    <h2 className="text-[10px] uppercase tracking-widest font-bold text-batik-900">Karya Anda</h2>
                                     {content && (
-                                        <button
-                                            onClick={handleReset}
-                                            className="p-2 text-gray-500 hover:bg-white/80 rounded-lg transition-colors"
-                                            title="Reset"
-                                        >
+                                        <button onClick={handleReset} className="text-batik-400 hover:text-batik-900 transition-colors">
                                             <RotateCcw className="w-4 h-4" />
                                         </button>
                                     )}
                                 </div>
 
-                                <div className="p-6">
-                                    {/* Sample Texts */}
-                                    <div className="mb-4">
-                                        <p className="text-sm text-gray-500 mb-2">Coba contoh:</p>
-                                        <div className="flex flex-wrap gap-2">
-                                            {sampleTexts.map((sample, i) => (
-                                                <button
-                                                    key={i}
-                                                    onClick={() => setContent(sample.content)}
-                                                    className="px-3 py-1.5 text-xs bg-violet-50 text-violet-700 rounded-full hover:bg-violet-100 transition-colors border border-violet-200"
-                                                >
-                                                    {sample.label}
-                                                </button>
-                                            ))}
-                                        </div>
+                                <div className="p-8 flex-1 flex flex-col">
+                                    {/* Samples */}
+                                    <div className="mb-6 flex flex-wrap gap-4">
+                                        {sampleTexts.map((sample, i) => (
+                                            <button
+                                                key={i}
+                                                onClick={() => setContent(sample.content)}
+                                                className="text-[10px] uppercase tracking-widest font-bold text-batik-400 hover:text-batik-900 transition-colors"
+                                            >
+                                                # {sample.label}
+                                            </button>
+                                        ))}
                                     </div>
 
-                                    {/* Textarea */}
                                     <textarea
                                         value={content}
                                         onChange={(e) => {
                                             setContent(e.target.value);
                                             setError("");
                                         }}
-                                        placeholder="Tempelkan atau tulis karya sastra Anda di sini...
-
-Contoh:
-Di tepi pantai aku berdiri
-Memandang ombak yang berlari
-Rindu ini tak bisa lari
-Meski kau jauh di ujung hari"
-                                        className="w-full h-64 px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-violet-500 focus:ring-2 focus:ring-violet-200 transition-all resize-none font-serif text-gray-800"
+                                        placeholder="Tuliskan karya sastra di sini..."
+                                        className="w-full flex-1 p-0 bg-transparent border-none focus:ring-0 resize-none font-serif text-batik-900 leading-loose text-lg italic placeholder:text-batik-100"
                                     />
 
-                                    <div className="flex items-center justify-between mt-2 text-xs text-gray-400">
-                                        <span>{content.length} karakter</span>
-                                        <span>{content.split(/\s+/).filter(w => w).length} kata</span>
+                                    <div className="flex items-center justify-between mt-6 text-[10px] uppercase tracking-widest font-bold text-batik-300">
+                                        <span>{content.length} Karakter</span>
+                                        <span>{content.split(/\s+/).filter(w => w).length} Kata</span>
                                     </div>
 
-                                    {/* Error */}
-                                    <AnimatePresence>
-                                        {error && (
-                                            <motion.div
-                                                initial={{ opacity: 0, y: -10 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                exit={{ opacity: 0, y: -10 }}
-                                                className="mt-4 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm flex items-center gap-2"
-                                            >
-                                                <AlertCircle className="w-4 h-4" />
-                                                {error}
-                                            </motion.div>
-                                        )}
-                                    </AnimatePresence>
-
-                                    {/* Analyze Button */}
                                     <button
                                         onClick={handleAnalyze}
                                         disabled={isAnalyzing || !content.trim()}
-                                        className="w-full mt-6 py-4 bg-gradient-to-r from-violet-500 via-purple-500 to-indigo-500 text-white rounded-xl font-semibold shadow-lg shadow-violet-500/25 hover:shadow-xl hover:shadow-violet-500/30 transform hover:-translate-y-0.5 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2"
+                                        className="w-full mt-8 py-5 bg-batik-900 text-batik-50 font-bold uppercase tracking-widest text-xs hover:bg-batik-800 transition-all shadow-xl shadow-batik-900/10 disabled:opacity-50 flex items-center justify-center gap-3"
                                     >
-                                        {isAnalyzing ? (
-                                            <>
-                                                <Loader2 className="w-5 h-5 animate-spin" />
-                                                Menganalisis...
-                                            </>
-                                        ) : (
-                                            <>
-                                                <Sparkles className="w-5 h-5" />
-                                                Analisis Karya
-                                            </>
-                                        )}
+                                        {isAnalyzing ? "Membedah Karya..." : "Mulai Analisis"}
                                     </button>
                                 </div>
                             </div>
                         </motion.div>
 
-                        {/* Result Panel */}
                         <motion.div
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
+                            className="lg:col-span-1"
                         >
-                            <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-                                <div className="p-4 border-b border-gray-100 bg-gradient-to-r from-violet-50 to-indigo-50 flex items-center justify-between">
-                                    <div className="flex items-center gap-2">
-                                        <TrendingUp className="w-5 h-5 text-violet-600" />
-                                        <h2 className="font-semibold text-gray-900">Hasil Analisis</h2>
-                                    </div>
+                            <div className="bg-white border border-batik-100 overflow-hidden flex flex-col h-full min-h-[600px]">
+                                <div className="p-8 border-b border-batik-50 flex items-center justify-between">
+                                    <h2 className="text-[10px] uppercase tracking-widest font-bold text-batik-900">Hasil Bedah</h2>
                                     {result && (
-                                        <button
-                                            onClick={copyAnalysis}
-                                            className="p-2 text-gray-500 hover:bg-white/80 rounded-lg transition-colors"
-                                            title="Salin Analisis"
-                                        >
+                                        <button onClick={copyAnalysis} className="text-batik-400 hover:text-batik-900 transition-colors">
                                             {copied ? <Check className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4" />}
                                         </button>
                                     )}
                                 </div>
 
-                                <div className="p-6 min-h-[500px]">
+                                <div className="p-10 flex-1">
                                     {result ? (
                                         <motion.div
                                             initial={{ opacity: 0 }}
                                             animate={{ opacity: 1 }}
-                                            className="space-y-6"
+                                            className="space-y-12"
                                         >
                                             {/* Score */}
-                                            <div className="text-center">
-                                                <div className={`inline-flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-r ${getScoreColor(result.overallScore)} shadow-lg`}>
-                                                    <div className="text-center">
-                                                        <div className="text-3xl font-bold text-white">{result.overallScore}</div>
-                                                        <div className="text-xs text-white/80">/100</div>
-                                                    </div>
+                                            <div className="flex items-center gap-8 p-8 bg-batik-50 border border-batik-100">
+                                                <div className="w-24 h-24 border-2 border-batik-900 rounded-full flex items-center justify-center">
+                                                    <span className="text-3xl font-serif font-bold text-batik-900">{result.overallScore}</span>
                                                 </div>
-                                                <div className="mt-2 text-lg font-semibold text-gray-900">
-                                                    {getScoreLabel(result.overallScore)}
+                                                <div>
+                                                    <h3 className="text-lg font-serif font-bold text-batik-950 mb-1">{getScoreLabel(result.overallScore)}</h3>
+                                                    <p className="text-xs uppercase tracking-widest font-bold text-batik-400">Skor Kualitas Estetika</p>
                                                 </div>
                                             </div>
 
                                             {/* Summary */}
-                                            <div className="bg-gradient-to-br from-violet-50 to-indigo-50 rounded-xl p-4">
-                                                <p className="text-gray-700 text-sm leading-relaxed">
-                                                    {result.summary}
-                                                </p>
+                                            <div className="font-serif italic text-batik-900 leading-relaxed text-sm">
+                                                "{result.summary}"
                                             </div>
 
-                                            {/* Quick Info */}
-                                            <div className="grid grid-cols-3 gap-3">
-                                                <div className="text-center p-3 bg-gray-50 rounded-xl">
-                                                    <div className="text-xs text-gray-500 mb-1">Jenis</div>
-                                                    <div className="font-semibold text-gray-900 capitalize text-sm">
-                                                        {result.literatureType}
-                                                    </div>
-                                                </div>
-                                                <div className="text-center p-3 bg-gray-50 rounded-xl">
-                                                    <div className="text-xs text-gray-500 mb-1">Tema</div>
-                                                    <div className="font-semibold text-gray-900 text-sm truncate" title={result.theme}>
-                                                        {result.theme}
-                                                    </div>
-                                                </div>
-                                                <div className="text-center p-3 bg-gray-50 rounded-xl">
-                                                    <div className="text-xs text-gray-500 mb-1">Suasana</div>
-                                                    <div className="font-semibold text-gray-900 capitalize text-sm">
-                                                        {result.mood}
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            {/* Strengths */}
-                                            <div>
-                                                <h3 className="flex items-center gap-2 font-semibold text-gray-900 mb-3">
-                                                    <CheckCircle className="w-4 h-4 text-green-500" />
-                                                    Kekuatan
-                                                </h3>
-                                                <ul className="space-y-2">
-                                                    {result.strengths.map((strength, i) => (
-                                                        <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
-                                                            <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">
-                                                                ✓
-                                                            </span>
-                                                            {strength}
-                                                        </li>
-                                                    ))}
-                                                </ul>
-                                            </div>
-
-                                            {/* Improvements */}
-                                            <div>
-                                                <h3 className="flex items-center gap-2 font-semibold text-gray-900 mb-3">
-                                                    <PenTool className="w-4 h-4 text-amber-500" />
-                                                    Saran Perbaikan
-                                                </h3>
-                                                <ul className="space-y-2">
-                                                    {result.improvements.map((improvement, i) => (
-                                                        <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
-                                                            <span className="w-5 h-5 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center text-xs flex-shrink-0 mt-0.5">
-                                                                •
-                                                            </span>
-                                                            {improvement}
-                                                        </li>
-                                                    ))}
-                                                </ul>
-                                            </div>
-
-                                            {/* Figurative Language */}
-                                            {result.figurativeLanguage.length > 0 && (
+                                            {/* Stats */}
+                                            <div className="grid grid-cols-3 gap-6 pt-6 border-t border-batik-50">
                                                 <div>
-                                                    <h3 className="flex items-center gap-2 font-semibold text-gray-900 mb-3">
-                                                        <BookOpen className="w-4 h-4 text-violet-500" />
-                                                        Majas & Gaya Bahasa
-                                                    </h3>
-                                                    <div className="space-y-2">
-                                                        {result.figurativeLanguage.map((fig, i) => (
-                                                            <div key={i} className="p-3 bg-violet-50 rounded-lg">
-                                                                <div className="font-medium text-violet-700 text-sm">{fig.type}</div>
-                                                                <div className="text-xs text-gray-600 mt-1 italic">"{fig.example}"</div>
-                                                                <div className="text-xs text-gray-500 mt-1">{fig.explanation}</div>
-                                                            </div>
+                                                    <span className="block text-[10px] uppercase tracking-widest font-bold text-batik-300 mb-2">Jenis</span>
+                                                    <span className="font-bold text-batik-900 text-xs">{result.literatureType}</span>
+                                                </div>
+                                                <div>
+                                                    <span className="block text-[10px] uppercase tracking-widest font-bold text-batik-300 mb-2">Tema</span>
+                                                    <span className="font-bold text-batik-900 text-xs">{result.theme}</span>
+                                                </div>
+                                                <div>
+                                                    <span className="block text-[10px] uppercase tracking-widest font-bold text-batik-300 mb-2">Mood</span>
+                                                    <span className="font-bold text-batik-900 text-xs">{result.mood}</span>
+                                                </div>
+                                            </div>
+
+                                            {/* Details */}
+                                            <div className="space-y-8">
+                                                <div>
+                                                    <h4 className="text-[10px] uppercase tracking-widest font-bold text-batik-900 mb-4">Unsur Kekuatan</h4>
+                                                    <ul className="space-y-3">
+                                                        {result.strengths.map((s, i) => (
+                                                            <li key={i} className="flex items-start gap-3 text-sm text-batik-700 font-light">
+                                                                <span className="w-1.5 h-1.5 bg-batik-900 mt-1.5 flex-shrink-0" />
+                                                                {s}
+                                                            </li>
                                                         ))}
-                                                    </div>
+                                                    </ul>
                                                 </div>
-                                            )}
-
-                                            {/* Rhyme Pattern */}
-                                            {result.rhymePattern && (
-                                                <div className="p-3 bg-indigo-50 rounded-lg">
-                                                    <div className="text-xs text-indigo-600 font-medium">Pola Rima</div>
-                                                    <div className="text-lg font-bold text-indigo-700">{result.rhymePattern}</div>
+                                                <div>
+                                                    <h4 className="text-[10px] uppercase tracking-widest font-bold text-batik-900 mb-4">Saran Estetika</h4>
+                                                    <ul className="space-y-3">
+                                                        {result.improvements.map((s, i) => (
+                                                            <li key={i} className="flex items-start gap-3 text-sm text-batik-700 font-light">
+                                                                <span className="w-1.5 h-1.5 bg-batik-300 mt-1.5 flex-shrink-0" />
+                                                                {s}
+                                                            </li>
+                                                        ))}
+                                                    </ul>
                                                 </div>
-                                            )}
+                                            </div>
 
-                                            {/* Detailed Feedback */}
-                                            <div className="p-4 bg-gradient-to-r from-violet-100 to-indigo-100 rounded-xl">
-                                                <h3 className="flex items-center gap-2 font-semibold text-gray-900 mb-2">
-                                                    <Award className="w-4 h-4 text-violet-600" />
-                                                    Feedback untuk Penulis
-                                                </h3>
-                                                <p className="text-sm text-gray-700 leading-relaxed">
-                                                    {result.detailedFeedback}
-                                                </p>
+                                            {/* Feedback */}
+                                            <div className="p-8 border border-batik-900 bg-batik-950 text-batik-50">
+                                                <h4 className="text-[10px] uppercase tracking-widest font-bold text-batik-400 mb-4">Catatan Kurator</h4>
+                                                <p className="font-serif italic text-sm leading-relaxed">{result.detailedFeedback}</p>
                                             </div>
                                         </motion.div>
                                     ) : (
-                                        <div className="h-full flex items-center justify-center text-center py-12">
-                                            <div>
-                                                <div className="w-20 h-20 bg-gradient-to-br from-violet-100 to-indigo-100 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-violet-100">
-                                                    <Search className="w-10 h-10 text-violet-500" />
-                                                </div>
-                                                <h3 className="text-lg font-semibold text-gray-800 mb-2">
-                                                    Analisis Karya Anda
-                                                </h3>
-                                                <p className="text-sm text-gray-500 max-w-xs mx-auto">
-                                                    Tempelkan karya sastra di sebelah kiri, lalu klik "Analisis Karya" untuk mendapatkan feedback AI
-                                                </p>
-
-                                                {/* Features */}
-                                                <div className="mt-6 space-y-2">
-                                                    {[
-                                                        "Skor kualitas keseluruhan",
-                                                        "Identifikasi kekuatan karya",
-                                                        "Saran perbaikan konstruktif",
-                                                        "Analisis gaya bahasa"
-                                                    ].map((feature, i) => (
-                                                        <motion.p
-                                                            key={i}
-                                                            initial={{ opacity: 0, x: -10 }}
-                                                            animate={{ opacity: 1, x: 0 }}
-                                                            transition={{ delay: i * 0.1 }}
-                                                            className="text-xs text-gray-400"
-                                                        >
-                                                            • {feature}
-                                                        </motion.p>
-                                                    ))}
-                                                </div>
-                                            </div>
+                                        <div className="h-full flex flex-col items-center justify-center text-center opacity-20">
+                                            <Search className="w-16 h-16 text-batik-900 mb-6" />
+                                            <p className="text-sm font-serif italic text-batik-900">Bedahan karya akan muncul di sini...</p>
                                         </div>
                                     )}
                                 </div>

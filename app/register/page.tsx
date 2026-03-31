@@ -4,7 +4,6 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Mail, Lock, User, ArrowRight, BookOpen, CheckCircle } from "lucide-react";
-import Navbar from "@/components/layout/Navbar";
 
 export default function RegisterPage() {
     const [name, setName] = useState("");
@@ -34,57 +33,56 @@ export default function RegisterPage() {
     ];
 
     return (
-        <main className="min-h-screen bg-gradient-to-br from-batik-cream via-white to-batik-warm-beige">
-            <Navbar />
-
-            <div className="pt-24 pb-16">
-                <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <main className="min-h-screen bg-batik-50 font-sans text-batik-950 flex items-center justify-center p-6">
+            <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
                     {/* Left - Benefits */}
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
-                        className="hidden lg:block"
+                        className="hidden lg:block space-y-12"
                     >
-                        <h2 className="text-4xl font-serif font-bold text-primary-800 mb-6">
-                            Bergabung dengan{" "}
-                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-batik-terracotta to-batik-gold">
-                                Sastrafy
-                            </span>
-                        </h2>
-                        <p className="text-lg text-primary-600 mb-8">
-                            Mulai perjalanan Anda dalam dunia sastra Indonesia dengan teknologi AI
-                        </p>
+                        <div>
+                            <h2 className="text-5xl font-serif font-bold text-batik-950 mb-6 leading-tight">
+                                Mulai Perjalanan <br />
+                                <span className="text-batik-600">Literasi Anda</span>
+                            </h2>
+                            <p className="text-lg text-batik-700 font-light max-w-md italic">
+                                "Menulis adalah bekerja untuk keabadian."
+                            </p>
+                        </div>
 
-                        <div className="space-y-4">
+                        <div className="space-y-6">
                             {benefits.map((benefit, i) => (
                                 <motion.div
                                     key={i}
                                     initial={{ opacity: 0, x: -20 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ delay: i * 0.1 }}
-                                    className="flex items-center space-x-3"
+                                    className="flex items-center gap-4"
                                 >
-                                    <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                                        <CheckCircle className="w-5 h-5 text-green-600" />
+                                    <div className="w-6 h-6 border border-batik-200 flex items-center justify-center">
+                                        <CheckCircle className="w-3.5 h-3.5 text-batik-900" />
                                     </div>
-                                    <span className="text-primary-700">{benefit}</span>
+                                    <span className="text-sm font-light text-batik-800">{benefit}</span>
                                 </motion.div>
                             ))}
                         </div>
 
-                        <div className="mt-12 p-6 bg-white/60 rounded-2xl border border-primary-100">
-                            <div className="flex items-center space-x-4">
-                                <div className="flex -space-x-3">
+                        <div className="pt-12 border-t border-batik-100">
+                            <div className="flex items-center gap-6">
+                                <div className="flex -space-x-4">
                                     {[1, 2, 3, 4].map((i) => (
                                         <div
                                             key={i}
-                                            className="w-10 h-10 bg-gradient-to-br from-batik-terracotta to-batik-gold rounded-full border-2 border-white"
-                                        />
+                                            className="w-12 h-12 bg-batik-200 border-2 border-batik-50 flex items-center justify-center"
+                                        >
+                                            <User className="w-6 h-6 text-batik-400" />
+                                        </div>
                                     ))}
                                 </div>
                                 <div>
-                                    <div className="font-semibold text-primary-800">500+ Penulis</div>
-                                    <div className="text-sm text-primary-500">sudah bergabung</div>
+                                    <div className="text-xl font-serif font-bold text-batik-950">800+ Pujangga</div>
+                                    <div className="text-[10px] uppercase tracking-widest font-bold text-batik-400">Telah bergabung bersama kami</div>
                                 </div>
                             </div>
                         </div>
@@ -95,110 +93,87 @@ export default function RegisterPage() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                     >
-                        <div className="bg-white rounded-2xl shadow-2xl p-8 border border-primary-100">
-                            <div className="text-center mb-8">
-                                <div className="w-16 h-16 bg-gradient-to-br from-batik-terracotta to-batik-gold rounded-2xl flex items-center justify-center mx-auto mb-4">
-                                    <BookOpen className="w-8 h-8 text-white" />
+                        <div className="bg-white border border-batik-100 p-12">
+                            <div className="text-center mb-12">
+                                <div className="w-16 h-16 bg-batik-900 border border-batik-100 flex items-center justify-center mx-auto mb-6">
+                                    <BookOpen className="w-8 h-8 text-batik-50" />
                                 </div>
-                                <h1 className="text-2xl font-serif font-bold text-primary-800">
-                                    Buat Akun Baru
+                                <h1 className="text-3xl font-serif font-bold text-batik-950 mb-2">
+                                    Daftar Baru
                                 </h1>
-                                <p className="text-primary-600 mt-2">
-                                    Gratis untuk memulai
+                                <p className="text-[10px] uppercase tracking-widest font-bold text-batik-400">
+                                    Masuk ke semesta Sastrafy
                                 </p>
                             </div>
 
-                            <form onSubmit={handleSubmit} className="space-y-4">
+                            <form onSubmit={handleSubmit} className="space-y-8">
                                 {/* Name */}
-                                <div>
-                                    <label className="block text-sm font-medium text-primary-700 mb-1">
+                                <div className="space-y-2">
+                                    <label className="text-[10px] uppercase tracking-widest font-bold text-batik-900">
                                         Nama Lengkap
                                     </label>
                                     <div className="relative">
-                                        <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-primary-400" />
+                                        <User className="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-4 text-batik-300" />
                                         <input
                                             type="text"
                                             value={name}
                                             onChange={(e) => setName(e.target.value)}
-                                            className="w-full pl-12 pr-4 py-3 rounded-xl border-2 border-primary-200 focus:border-batik-terracotta focus:ring-4 focus:ring-batik-terracotta/20 transition-all"
-                                            placeholder="Nama Anda"
+                                            className="w-full pl-8 pr-4 py-4 bg-transparent border-b border-batik-100 focus:border-batik-900 outline-none transition-all text-sm font-light italic"
+                                            placeholder="Nama Lengkap Anda"
                                             required
                                         />
                                     </div>
                                 </div>
 
                                 {/* Email */}
-                                <div>
-                                    <label className="block text-sm font-medium text-primary-700 mb-1">
-                                        Email
+                                <div className="space-y-2">
+                                    <label className="text-[10px] uppercase tracking-widest font-bold text-batik-900">
+                                        Alamat Email
                                     </label>
                                     <div className="relative">
-                                        <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-primary-400" />
+                                        <Mail className="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-4 text-batik-300" />
                                         <input
                                             type="email"
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
-                                            className="w-full pl-12 pr-4 py-3 rounds-xl border-2 border-primary-200 focus:border-batik-terracotta focus:ring-4 focus:ring-batik-terracotta/20 transition-all"
-                                            placeholder="email@contoh.com"
+                                            className="w-full pl-8 pr-4 py-4 bg-transparent border-b border-batik-100 focus:border-batik-900 outline-none transition-all text-sm font-light italic"
+                                            placeholder="nama@email.com"
                                             required
                                         />
                                     </div>
                                 </div>
 
                                 {/* Password */}
-                                <div>
-                                    <label className="block text-sm font-medium text-primary-700 mb-1">
-                                        Password
+                                <div className="space-y-2">
+                                    <label className="text-[10px] uppercase tracking-widest font-bold text-batik-900">
+                                        Kata Sandi
                                     </label>
                                     <div className="relative">
-                                        <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-primary-400" />
+                                        <Lock className="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-4 text-batik-300" />
                                         <input
                                             type="password"
                                             value={password}
                                             onChange={(e) => setPassword(e.target.value)}
-                                            className="w-full pl-12 pr-4 py-3 rounded-xl border-2 border-primary-200 focus:border-batik-terracotta focus:ring-4 focus:ring-batik-terracotta/20 transition-all"
-                                            placeholder="Minimal 8 karakter"
+                                            className="w-full pl-8 pr-4 py-4 bg-transparent border-b border-batik-100 focus:border-batik-900 outline-none transition-all text-sm font-light italic"
+                                            placeholder="••••••••"
                                             minLength={8}
                                             required
                                         />
                                     </div>
                                 </div>
 
-                                {/* Confirm Password */}
-                                <div>
-                                    <label className="block text-sm font-medium text-primary-700 mb-1">
-                                        Konfirmasi Password
-                                    </label>
-                                    <div className="relative">
-                                        <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-primary-400" />
-                                        <input
-                                            type="password"
-                                            value={confirmPassword}
-                                            onChange={(e) => setConfirmPassword(e.target.value)}
-                                            className="w-full pl-12 pr-4 py-3 rounded-xl border-2 border-primary-200 focus:border-batik-terracotta focus:ring-4 focus:ring-batik-terracotta/20 transition-all"
-                                            placeholder="Ulangi password"
-                                            required
-                                        />
-                                    </div>
-                                </div>
-
                                 {/* Terms */}
-                                <div className="flex items-start space-x-2">
+                                <div className="flex items-start gap-3">
                                     <input
                                         type="checkbox"
                                         id="terms"
-                                        className="mt-1 w-4 h-4 rounded border-primary-300 text-batik-terracotta focus:ring-batik-terracotta"
+                                        className="mt-1 w-4 h-4 border-batik-200 text-batik-900 focus:ring-batik-900"
                                         required
                                     />
-                                    <label htmlFor="terms" className="text-sm text-primary-600">
+                                    <label htmlFor="terms" className="text-[10px] uppercase tracking-widest font-bold text-batik-400 leading-relaxed">
                                         Saya setuju dengan{" "}
-                                        <Link href="/terms" className="text-batik-terracotta hover:underline">
-                                            Syarat & Ketentuan
-                                        </Link>{" "}
-                                        dan{" "}
-                                        <Link href="/privacy" className="text-batik-terracotta hover:underline">
-                                            Kebijakan Privasi
-                                        </Link>
+                                        <Link href="/terms" className="text-batik-900 hover:underline">Syarat</Link> &{" "}
+                                        <Link href="/privacy" className="text-batik-900 hover:underline">Kebijakan</Link> kami.
                                     </label>
                                 </div>
 
@@ -206,32 +181,33 @@ export default function RegisterPage() {
                                 <button
                                     type="submit"
                                     disabled={isLoading}
-                                    className="w-full py-4 bg-gradient-to-r from-batik-terracotta to-primary-500 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all disabled:opacity-50 flex items-center justify-center space-x-2"
+                                    className="w-full py-5 bg-batik-900 text-batik-50 font-bold text-xs uppercase tracking-widest hover:bg-batik-800 transition-all disabled:opacity-50 flex items-center justify-center gap-3"
                                 >
                                     {isLoading ? (
-                                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                                        <div className="w-4 h-4 border-2 border-batik-50 border-t-transparent rounded-full animate-spin" />
                                     ) : (
                                         <>
-                                            <span>Daftar Sekarang</span>
-                                            <ArrowRight className="w-5 h-5" />
+                                            <span>Bergabung Sastrafy</span>
+                                            <ArrowRight className="w-4 h-4" />
                                         </>
                                     )}
                                 </button>
                             </form>
 
-                            <p className="text-center mt-6 text-primary-600">
-                                Sudah punya akun?{" "}
-                                <Link
-                                    href="/login"
-                                    className="text-batik-terracotta font-medium hover:underline"
-                                >
-                                    Masuk
-                                </Link>
-                            </p>
+                            <div className="mt-12 pt-8 border-t border-batik-50 text-center">
+                                <p className="text-[10px] uppercase tracking-widest font-bold text-batik-400">
+                                    Sudah punya akun?{" "}
+                                    <Link
+                                        href="/login"
+                                        className="text-batik-900 hover:text-batik-600 transition-colors"
+                                    >
+                                        Masuk Di Sini
+                                    </Link>
+                                </p>
+                            </div>
                         </div>
                     </motion.div>
                 </div>
-            </div>
         </main>
     );
 }
